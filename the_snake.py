@@ -45,7 +45,7 @@ clock = pygame.time.Clock()
 class GameObject:
     """Экран обьекта"""
 
-    def init(self, position: Optional[Tuple[int, int]] = None,
+    def __init__(self, position: Optional[Tuple[int, int]] = None,
                  body_color: Optional[Tuple[int, int, int]] = None) -> None:
         """Инициализация объект на игры поле."""
         self.position = position or (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
@@ -66,9 +66,9 @@ class GameObject:
 class Apple(GameObject):
     """Яблоко"""
 
-    def init(self) -> None:
+    def __init__(self) -> None:
         """Инициализирует яблоко на игры поле."""
-        super().init(None, APPLE_COLOR)
+        super().__init__(None, APPLE_COLOR)
         self.randomize_position()
 
     def randomize_position(self) -> None:
@@ -84,9 +84,9 @@ class Apple(GameObject):
 class Snake(GameObject):
     """Змейка."""
 
-    def init(self) -> None:
+    def __init__(self) -> None:
         """Инициализирует начале состояние змейка."""
-        super().init((GRID_WIDTH // 2 * GRID_SIZE,
+        super().__init__((GRID_WIDTH // 2 * GRID_SIZE,
                           GRID_HEIGHT // 2 * GRID_SIZE), SNAKE_COLOR)
         self.length: int = 1
         self.positions: List[Tuple[int, int]] = [self.position]
@@ -126,22 +126,23 @@ class Snake(GameObject):
 
         head_position = self.positions[0]
         self.draw_cell(surface, head_position, SNAKE_COLOR)
-def get_head_position(self) -> Tuple[int, int]:
+
+    def get_head_position(self) -> Tuple[int, int]:
         """
         Возвращает позиция головы змейка
         (там первый элемент в списке positions).
         """
         return self.positions[0]
 
-def reset(self) -> None:
+    def reset(self) -> None:
         """
         Сбрасывает змейка в начале состояние
         и после столкновение с собой снова игры.
         """
-    self.length = 1
-    self.positions = [self.position]
-    self.direction = RIGHT
-    self.next_direction = None
+        self.length = 1
+        self.positions = [self.position]
+        self.direction = RIGHT
+        self.next_direction = None
 
 
 def handle_keys(snake: Snake) -> None:
@@ -183,5 +184,5 @@ def main() -> None:
         pygame.display.update()
 
 
-if name == 'main':
+if __name__ == '__main__':
     main()
