@@ -133,15 +133,15 @@ def get_head_position(self) -> Tuple[int, int]:
         """
         return self.positions[0]
 
-    def reset(self) -> None:
+def reset(self) -> None:
         """
         Сбрасывает змейка в начале состояние
         и после столкновение с собой снова игры.
         """
-        self.length = 1
-        self.positions = [self.position]
-        self.direction = RIGHT
-        self.next_direction = None
+    self.length = 1
+    self.positions = [self.position]
+    self.direction = RIGHT
+    self.next_direction = None
 
 
 def handle_keys(snake: Snake) -> None:
